@@ -8,7 +8,7 @@ public:
         }
         int end=0;
         for(int start=0;start<n;start+=2*k){
-            int end = min(start + k, n);  // reverse first k chars (or less if not enough left)
+            int end = min(start + k, n); 
             reverse(s.begin() + start, s.begin() + end);
         }
         return s;
