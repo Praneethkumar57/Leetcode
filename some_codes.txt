@@ -32,3 +32,65 @@ public:
     }
 };
 
+
+// leetcode 269 alien dictionary 
+
+class Solution {
+  public:
+    string findOrder(vector<string> &words) {
+        map<char,int> uniq;
+        map<char,vector<char>> adj;
+        map<char,int> indeg;
+        int n=words.size();
+        for(int i=0;i<n;i++){
+            for(auto ch:words[i]){
+                uniq[ch]++;
+                adj[ch];
+                indeg[ch]=0;
+            }
+        }
+        int m = uniq.size();
+        
+        
+        
+        string res="";
+        for(int i=1;i<n;i++){
+            string first = words[i-1];
+            string second = words[i];
+            for(int j=0;j<first.size();j++){
+                if(second.size()<=j)return "";
+                if(first[j]!=second[j]){
+                    adj[first[j]].push_back(second[j]);
+                    indeg[second[j]]++;
+                    break;
+                }
+            }
+        }
+        
+        
+        queue<char> q;
+    
+        for(auto it:indeg){
+            if(it.second==0){
+                q.push(it.first);
+                res += it.first;
+            };
+        }
+        
+        while(!q.empty()){
+            char ele = q.front();
+            q.pop();
+            for(auto it:adj[ele]){
+                indeg[it]--;
+                if(indeg[it]==0){
+                    q.push(it);
+                    res += it;
+                }
+            }
+        }
+        
+        if(res.size()!=m)return "";
+        return res;
+    }
+};
+
