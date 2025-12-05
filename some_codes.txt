@@ -94,3 +94,58 @@ class Solution {
     }
 };
 
+
+// leetcode 329 longest increasing path 
+
+int dfs(int i,int j,vector<vector<int>>& matrix,int n,int m,vector<vector<int>>& dp,int len){
+    int val=0;
+    if(i-1>=0 && matrix[i-1][j]>matrix[i][j]){
+        if(dp[i-1][j]!=-1)val=max(val,dp[i-1][j]+1);
+        else{
+            val =max(val,dfs(i-1,j,matrix,n,m,dp,len)+1);
+        }
+    }
+    if(j-1>=0 && matrix[i][j-1]>matrix[i][j]){
+        if(dp[i][j-1]!=-1)val=max(val,dp[i][j-1]+1);
+        else{
+            val = max(val,dfs(i,j-1,matrix,n,m,dp,len)+1);
+        }
+    }
+    if(i+1<n && matrix[i+1][j]>matrix[i][j]){
+        if(dp[i+1][j]!=-1)val=max(val,dp[i+1][j]+1);
+        else{
+            val = max(val,dfs(i+1,j,matrix,n,m,dp,len)+1);
+        }
+    }
+    if(j+1<m && matrix[i][j+1]>matrix[i][j]){
+        if(dp[i][j+1]!=-1)val=max(val,dp[i][j+1]+1);
+        else{
+            val = max(val,dfs(i,j+1,matrix,n,m,dp,len)+1);
+        }
+    }
+    dp[i][j]=max(len,val);
+    return(dp[i][j]);
+}
+
+class Solution {
+public:
+    int longestIncreasingPath(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        int m=matrix[0].size();
+        vector<vector<int>> dp(n,vector<int>(m,-1));
+
+        int maxi=0;
+        for(int i=n-1;i>=0;i--){
+            for(int j=m-1;j>=0;j--){
+                if(dp[i][j]==-1){
+                    
+                    maxi =max(maxi,dfs(i,j,matrix,n,m,dp,1));
+                }
+                else{
+                    maxi = max(maxi,dp[i][j]);
+                }
+            }
+        }
+        return maxi;
+    }
+};
