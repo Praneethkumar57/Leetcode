@@ -149,3 +149,79 @@ public:
         return maxi;
     }
 };
+
+
+// leetcode 2115 find all possible recipes from given supplies
+
+void dfs(string i,map<string,int>& vis,map<string,vector<string>>& adj,vector<string>& order){
+    vis[i]=1;
+    for(auto it:adj[i]){
+        if(vis.find(it)==vis.end()){
+            dfs(it,vis,adj,order);
+        }
+    }
+    order.push_back(i);
+}
+
+class Solution {
+public:
+    vector<string> findAllRecipes(vector<string>& recipes, vector<vector<string>>& ingredients, vector<string>& supplies) {
+        map<string,vector<string>> adj;
+        map<string,int> mpp;
+        int n=recipes.size();
+        for(int i=0;i<n;i++){
+            mpp[recipes[i]]=i+1;
+        }
+        
+        for(int i=0;i<n;i++){
+            for(auto it:ingredients[i]){
+                if(mpp.find(it)!=mpp.end()){
+                    adj[recipes[i]].push_back(it);
+                }
+            }
+        }
+        
+        vector<string> res;
+        vector<string> order;
+        map<string,int> vis;
+        for(int i=0;i<n;i++){
+            string rec=recipes[i];
+            if(vis.find(rec)==vis.end()){
+                dfs(rec,vis,adj,order);
+            }
+        }
+        sort(supplies.begin(),supplies.end());
+        int m=supplies.size();
+        for(auto it:order){
+            int flag1=1;
+            for(auto i:ingredients[mpp[it]-1]){
+                int flag=0;
+                int start=0;
+                int end=m-1;
+                while(start<=end){
+                    int mid=(start+end)/2;
+                    if(supplies[mid]==i){
+                        flag=1;
+                        break;
+                    }
+                    if(supplies[mid]<i)start=mid+1;
+                    else end=mid-1;
+                }
+                if(flag==0){
+                    for(int j=0;j<res.size();j++){
+                        if(res[j]==i){
+                            flag=1;
+                            break;
+                        }
+                    }
+                }
+                if(flag==0){
+                    flag1=0;
+                    break;
+                }
+            }
+            if(flag1==1)res.push_back(it);
+        }
+        return res;
+    }
+};
