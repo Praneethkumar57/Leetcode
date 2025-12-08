@@ -225,3 +225,78 @@ public:
         return res;
     }
 };
+
+
+// leetcode 2392 build a matrix with conditions
+
+int t=0;
+
+bool dfs(int i,vector<vector<int>>& adj,vector<int>& vis,vector<int>& order,vector<pair<int,int>>& time){
+    vis[i]=1;
+    time[i].first = ++t;
+    for(auto it:adj[i]){
+        if(!vis[it]){
+            if(!dfs(it,adj,vis,order,time)) return false;
+        }
+        if(vis[it] && time[it].second==-1)return false;
+    }
+    order.push_back(i);
+    time[i].second = ++t;
+    return true;
+}
+
+class Solution {
+public:
+    vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions, vector<vector<int>>& colConditions) {
+        vector<vector<int>> rowadj(k+1);
+        for(auto it:rowConditions){
+            int u=it[0];
+            int v=it[1];
+            rowadj[u].push_back(v);
+        }
+        vector<vector<int>> coladj(k+1);
+        for(auto it:colConditions){
+            int u=it[0];
+            int v=it[1];
+            coladj[u].push_back(v);
+        }
+
+        vector<int> roworder;
+        vector<int> colorder;
+        vector<int> rowvis(k+1,0);
+        vector<int> colvis(k+1,0);
+        vector<pair<int,int>> rowtime(k+1,{-1,-1});
+        vector<pair<int,int>> coltime(k+1,{-1,-1});
+        for(int i=1;i<=k;i++){
+            if(!rowvis[i]){
+                if(!dfs(i,rowadj,rowvis,roworder,rowtime))return {};
+            }
+            if(!colvis[i]){
+                if(!dfs(i,coladj,colvis,colorder,coltime)) return {};
+            }
+        }
+        for(auto it:roworder){
+            cout<<it<<" ";
+        }
+        for(auto it:colorder){
+            cout<<it<<" ";
+        }
+        reverse(roworder.begin(),roworder.end());
+        reverse(colorder.begin(),colorder.end());
+        
+        vector<vector<int>> res(k,vector<int>(k,0));
+        for(int i=0;i<k;i++){
+            int ind=i;
+            int val=roworder[i];
+            for(int j=0;j<k;j++)res[ind][j]=val;
+        }
+        for(int i=0;i<k;i++){
+            int ind=i;
+            int val=colorder[i];
+            for(int j=0;j<k;j++){
+                if(res[j][ind]!=val)res[j][ind]=0;
+            }
+        }
+        return res;
+    }
+};
