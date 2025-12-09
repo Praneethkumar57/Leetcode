@@ -1,0 +1,337 @@
+// leetcode 802 eventual safe states 
+
+int t=0;
+
+bool dfs(int i,vector<int>& vis,vector<vector<int>>& graph,vector<pair<int,int>>& time){
+    vis[i]=1;
+    time[i].first =++t;
+    for(auto it:graph[i]){
+        if(!vis[it]){
+            if(!dfs(it,vis,graph,time))return false;
+        }
+        else if(vis[it] && time[it].second==-1)return false;
+    }
+    time[i].second=++t;
+    return true;
+}
+
+class Solution {
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n=graph.size();
+        vector<int> res;
+        vector<int> vis(n,0);
+        vector<pair<int,int>> time(n,{-1,-1});
+        for(int i=0;i<n;i++){
+            
+            if(dfs(i,vis,graph,time)){
+                res.push_back(i);
+            }
+        }
+        return res;
+    }
+};
+
+
+// leetcode 269 alien dictionary 
+
+class Solution {
+  public:
+    string findOrder(vector<string> &words) {
+        map<char,int> uniq;
+        map<char,vector<char>> adj;
+        map<char,int> indeg;
+        int n=words.size();
+        for(int i=0;i<n;i++){
+            for(auto ch:words[i]){
+                uniq[ch]++;
+                adj[ch];
+                indeg[ch]=0;
+            }
+        }
+        int m = uniq.size();
+        
+        
+        
+        string res="";
+        for(int i=1;i<n;i++){
+            string first = words[i-1];
+            string second = words[i];
+            for(int j=0;j<first.size();j++){
+                if(second.size()<=j)return "";
+                if(first[j]!=second[j]){
+                    adj[first[j]].push_back(second[j]);
+                    indeg[second[j]]++;
+                    break;
+                }
+            }
+        }
+        
+        
+        queue<char> q;
+    
+        for(auto it:indeg){
+            if(it.second==0){
+                q.push(it.first);
+                res += it.first;
+            };
+        }
+        
+        while(!q.empty()){
+            char ele = q.front();
+            q.pop();
+            for(auto it:adj[ele]){
+                indeg[it]--;
+                if(indeg[it]==0){
+                    q.push(it);
+                    res += it;
+                }
+            }
+        }
+        
+        if(res.size()!=m)return "";
+        return res;
+    }
+};
+
+
+// leetcode 329 longest increasing path 
+
+int dfs(int i,int j,vector<vector<int>>& matrix,int n,int m,vector<vector<int>>& dp,int len){
+    int val=0;
+    if(i-1>=0 && matrix[i-1][j]>matrix[i][j]){
+        if(dp[i-1][j]!=-1)val=max(val,dp[i-1][j]+1);
+        else{
+            val =max(val,dfs(i-1,j,matrix,n,m,dp,len)+1);
+        }
+    }
+    if(j-1>=0 && matrix[i][j-1]>matrix[i][j]){
+        if(dp[i][j-1]!=-1)val=max(val,dp[i][j-1]+1);
+        else{
+            val = max(val,dfs(i,j-1,matrix,n,m,dp,len)+1);
+        }
+    }
+    if(i+1<n && matrix[i+1][j]>matrix[i][j]){
+        if(dp[i+1][j]!=-1)val=max(val,dp[i+1][j]+1);
+        else{
+            val = max(val,dfs(i+1,j,matrix,n,m,dp,len)+1);
+        }
+    }
+    if(j+1<m && matrix[i][j+1]>matrix[i][j]){
+        if(dp[i][j+1]!=-1)val=max(val,dp[i][j+1]+1);
+        else{
+            val = max(val,dfs(i,j+1,matrix,n,m,dp,len)+1);
+        }
+    }
+    dp[i][j]=max(len,val);
+    return(dp[i][j]);
+}
+
+class Solution {
+public:
+    int longestIncreasingPath(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        int m=matrix[0].size();
+        vector<vector<int>> dp(n,vector<int>(m,-1));
+
+        int maxi=0;
+        for(int i=n-1;i>=0;i--){
+            for(int j=m-1;j>=0;j--){
+                if(dp[i][j]==-1){
+                    
+                    maxi =max(maxi,dfs(i,j,matrix,n,m,dp,1));
+                }
+                else{
+                    maxi = max(maxi,dp[i][j]);
+                }
+            }
+        }
+        return maxi;
+    }
+};
+
+
+// leetcode 2115 find all possible recipes from given supplies
+
+void dfs(string i,map<string,int>& vis,map<string,vector<string>>& adj,vector<string>& order){
+    vis[i]=1;
+    for(auto it:adj[i]){
+        if(vis.find(it)==vis.end()){
+            dfs(it,vis,adj,order);
+        }
+    }
+    order.push_back(i);
+}
+
+class Solution {
+public:
+    vector<string> findAllRecipes(vector<string>& recipes, vector<vector<string>>& ingredients, vector<string>& supplies) {
+        map<string,vector<string>> adj;
+        map<string,int> mpp;
+        int n=recipes.size();
+        for(int i=0;i<n;i++){
+            mpp[recipes[i]]=i+1;
+        }
+        
+        for(int i=0;i<n;i++){
+            for(auto it:ingredients[i]){
+                if(mpp.find(it)!=mpp.end()){
+                    adj[recipes[i]].push_back(it);
+                }
+            }
+        }
+        
+        vector<string> res;
+        vector<string> order;
+        map<string,int> vis;
+        for(int i=0;i<n;i++){
+            string rec=recipes[i];
+            if(vis.find(rec)==vis.end()){
+                dfs(rec,vis,adj,order);
+            }
+        }
+        sort(supplies.begin(),supplies.end());
+        int m=supplies.size();
+        for(auto it:order){
+            int flag1=1;
+            for(auto i:ingredients[mpp[it]-1]){
+                int flag=0;
+                int start=0;
+                int end=m-1;
+                while(start<=end){
+                    int mid=(start+end)/2;
+                    if(supplies[mid]==i){
+                        flag=1;
+                        break;
+                    }
+                    if(supplies[mid]<i)start=mid+1;
+                    else end=mid-1;
+                }
+                if(flag==0){
+                    for(int j=0;j<res.size();j++){
+                        if(res[j]==i){
+                            flag=1;
+                            break;
+                        }
+                    }
+                }
+                if(flag==0){
+                    flag1=0;
+                    break;
+                }
+            }
+            if(flag1==1)res.push_back(it);
+        }
+        return res;
+    }
+};
+
+
+// leetcode 2392 build a matrix with conditions
+
+int t=0;
+
+bool dfs(int i,vector<vector<int>>& adj,vector<int>& vis,vector<int>& order,vector<pair<int,int>>& time){
+    vis[i]=1;
+    time[i].first = ++t;
+    for(auto it:adj[i]){
+        if(!vis[it]){
+            if(!dfs(it,adj,vis,order,time)) return false;
+        }
+        if(vis[it] && time[it].second==-1)return false;
+    }
+    order.push_back(i);
+    time[i].second = ++t;
+    return true;
+}
+
+class Solution {
+public:
+    vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions, vector<vector<int>>& colConditions) {
+        vector<vector<int>> rowadj(k+1);
+        for(auto it:rowConditions){
+            int u=it[0];
+            int v=it[1];
+            rowadj[u].push_back(v);
+        }
+        vector<vector<int>> coladj(k+1);
+        for(auto it:colConditions){
+            int u=it[0];
+            int v=it[1];
+            coladj[u].push_back(v);
+        }
+
+        vector<int> roworder;
+        vector<int> colorder;
+        vector<int> rowvis(k+1,0);
+        vector<int> colvis(k+1,0);
+        vector<pair<int,int>> rowtime(k+1,{-1,-1});
+        vector<pair<int,int>> coltime(k+1,{-1,-1});
+        for(int i=1;i<=k;i++){
+            if(!rowvis[i]){
+                if(!dfs(i,rowadj,rowvis,roworder,rowtime))return {};
+            }
+            if(!colvis[i]){
+                if(!dfs(i,coladj,colvis,colorder,coltime)) return {};
+            }
+        }
+        for(auto it:roworder){
+            cout<<it<<" ";
+        }
+        for(auto it:colorder){
+            cout<<it<<" ";
+        }
+        reverse(roworder.begin(),roworder.end());
+        reverse(colorder.begin(),colorder.end());
+        
+        vector<vector<int>> res(k,vector<int>(k,0));
+        for(int i=0;i<k;i++){
+            int ind=i;
+            int val=roworder[i];
+            for(int j=0;j<k;j++)res[ind][j]=val;
+        }
+        for(int i=0;i<k;i++){
+            int ind=i;
+            int val=colorder[i];
+            for(int j=0;j<k;j++){
+                if(res[j][ind]!=val)res[j][ind]=0;
+            }
+        }
+        return res;
+    }
+};
+
+
+// leetcode 2192 all ancestors of a node in a directed graph
+
+void dfs(int i,vector<int>& vis,vector<vector<int>>& adj){
+    vis[i]=1;
+    for(auto it:adj[i]){
+        if(!vis[it]){
+            dfs(it,vis,adj);
+        }
+    }
+}
+
+class Solution {
+public:
+    vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
+        vector<vector<int>> adj(n);
+        for(auto it:edges){
+            int u=it[0];
+            int v=it[1];
+            adj[u].push_back(v);
+        }
+        vector<vector<int>> res(n);
+        for(int i=0;i<n;i++){
+            vector<int> vis(n,0);
+            dfs(i,vis,adj);
+            for(int j=0;j<n;j++){
+                if(vis[j]==1 && j!=i){
+                    res[j].push_back(i);
+                }
+            }
+        }
+        return res;
+    }
+};
