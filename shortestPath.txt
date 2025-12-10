@@ -214,3 +214,37 @@ public:
         return(dist[n-1][m-1]);
     }
 };
+
+// leetcode 787 cheapest flights within k stops
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<int> price(n,INT_MAX);
+        vector<vector<pair<int,int>>> adj(n);
+        for(auto it:flights){
+            int u=it[0];
+            int v=it[1];
+            int p=it[2];
+            adj[u].push_back({v,p});
+        }
+        priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>>> pq;
+        pq.push({0,{src,k}});
+        while(!pq.empty()){
+            pair<int,pair<int,int>> ele = pq.top();
+            int p=ele.first;
+            int node=ele.second.first;
+            int k_val = ele.second.second;
+            pq.pop();
+            //if(p>price[node])continue;
+            if(k_val<0)continue;
+            for(auto it:adj[node]){
+                if(p+it.second < price[it.first] && k_val>=0){
+                    price[it.first]=p+it.second;
+                    pq.push({price[it.first],{it.first,k_val-1}});
+                }
+            }
+        }
+        if(price[dst]==INT_MAX)return -1;
+        return price[dst];
+    }
+};
