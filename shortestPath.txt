@@ -215,11 +215,13 @@ public:
     }
 };
 
-// leetcode 787 cheapest flights within k stops
+// leetcode 787 cheapest flights within k stops (DP+ shortest path)
+// Really a good question we need to use 2D price vector which stores lowest price to reach a node 'n' within (atmost) 'k' stops which acts as dp array and we need to find the cheapest flights to reach 'dst' within 'k' stops
+
 class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
-        vector<int> price(n,INT_MAX);
+        vector<vector<int>> price(n,vector<int>(k+2,INT_MAX));
         vector<vector<pair<int,int>>> adj(n);
         for(auto it:flights){
             int u=it[0];
@@ -228,23 +230,30 @@ public:
             adj[u].push_back({v,p});
         }
         priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>>> pq;
-        pq.push({0,{src,k}});
+        pq.push({0,{src,k+1}});
+        price[src][k+1]=0;
         while(!pq.empty()){
             pair<int,pair<int,int>> ele = pq.top();
             int p=ele.first;
             int node=ele.second.first;
             int k_val = ele.second.second;
             pq.pop();
-            //if(p>price[node])continue;
-            if(k_val<0)continue;
+            if(p>price[node][k_val])continue;
+            if(k_val<=0)continue;
             for(auto it:adj[node]){
-                if(p+it.second < price[it.first] && k_val>=0){
-                    price[it.first]=p+it.second;
-                    pq.push({price[it.first],{it.first,k_val-1}});
+                if(p+it.second < price[it.first][k_val-1] && k_val>0){
+                    price[it.first][k_val-1]=p+it.second;
+                    pq.push({price[it.first][k_val-1],{it.first,k_val-1}});
                 }
+                
             }
         }
-        if(price[dst]==INT_MAX)return -1;
-        return price[dst];
+        
+        int mini=INT_MAX;
+        for(int i=0;i<=k+1;i++){
+            mini = min(mini,price[dst][i]);
+        }
+        if(mini==INT_MAX)return -1;
+        return mini;
     }
 };
