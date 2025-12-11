@@ -303,3 +303,58 @@ public:
         return 0;
     }
 };
+
+
+// leetcode 1334 Find the city with the smallest number of neighbours
+
+class Solution {
+public:
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
+
+        vector<vector<pair<int,int>>> adj(n);
+        for(auto it:edges){
+            int u=it[0];
+            int v=it[1];
+            int w=it[2];
+            adj[u].push_back({v,w});
+            adj[v].push_back({u,w});
+        }
+        vector<int> res;
+        for(int i=0;i<n;i++){
+            vector<int> d(n,INT_MAX);
+            priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+            pq.push({i,0});
+            d[i]=0;
+            while(!pq.empty()){
+                pair<int,int> ele = pq.top();
+                int node = ele.first;
+                int dist = ele.second;
+                pq.pop();
+
+                for(auto it:adj[node]){
+                    int newnode = it.first;
+                    int newdist = it.second;
+
+                    if(dist+newdist<d[newnode] && dist+newdist<=distanceThreshold){
+                        pq.push({newnode,dist+newdist});
+                        d[newnode]=dist+newdist;
+                    }
+                }
+            }
+            int cnt=0;
+            for(auto j:d){
+                if(j!=INT_MAX)cnt++;
+            }
+            res.push_back(cnt-1);
+        }
+        int mini=INT_MAX;
+        int ind = 0;
+        for(int i=0;i<n;i++){
+            if(res[i]<=mini){
+                mini = res[i];
+                ind = i;
+            }
+        }
+        return ind;
+    }
+};
