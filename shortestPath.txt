@@ -463,3 +463,77 @@ public:
         return dist[n-1][m-1];
     }
 };
+
+
+// leetcode 3341 Find minimum time to reach last room 1
+
+class Solution {
+public:
+    int minTimeToReach(vector<vector<int>>& moveTime) {
+        int n=moveTime.size();
+        int m=moveTime[0].size();
+        priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>>> pq;
+        vector<vector<int>> time(n,vector<int>(m,INT_MAX));
+        pq.push({0,{0,0}});
+        time[0][0]=0;
+
+        while(!pq.empty()){
+            pair<int,pair<int,int>> ele = pq.top();
+            int t = ele.first;
+            int i = ele.second.first;
+            int j = ele.second.second;
+            pq.pop();
+
+            if(i==n-1 && j==m-1)return t;
+
+            if(i+1<n && t>=moveTime[i+1][j] && t+1<time[i+1][j]){
+                time[i+1][j]=t+1;
+                pq.push({time[i+1][j],{i+1,j}});
+            }
+            else if(i+1<n && t<moveTime[i+1][j]){
+                int newtime = (moveTime[i+1][j]-t)+1;
+                if(newtime+t<time[i+1][j]){
+                    time[i+1][j]=newtime+t;
+                    pq.push({time[i+1][j],{i+1,j}});
+                }
+            }
+
+            if(j+1<m && t>=moveTime[i][j+1] && t+1<time[i][j+1]){
+                time[i][j+1]=t+1;
+                pq.push({time[i][j+1],{i,j+1}});
+            }
+            else if(j+1<m && t<moveTime[i][j+1]){
+                int newtime = (moveTime[i][j+1]-t)+1;
+                if(newtime+t<time[i][j+1]){
+                    time[i][j+1]=newtime+t;
+                    pq.push({time[i][j+1],{i,j+1}});
+                }
+            }
+
+            if(i-1>=0 && t>=moveTime[i-1][j] && t+1<time[i-1][j]){
+                time[i-1][j]=t+1;
+                pq.push({time[i-1][j],{i-1,j}});
+            }
+            else if(i-1>=0 && t<moveTime[i-1][j]){
+                int newtime = (moveTime[i-1][j]-t)+1;
+                if(newtime+t<time[i-1][j]){
+                    time[i-1][j]=newtime+t;
+                    pq.push({time[i-1][j],{i-1,j}});
+                }
+            }
+
+            if(j-1>=0 && t>=moveTime[i][j-1] && t+1<time[i][j-1]){
+                time[i][j-1]=t+1;
+                pq.push({time[i][j-1],{i,j-1}});
+            }
+            else if(j-1>=0 && t<moveTime[i][j-1]){
+                int newtime = moveTime[i][j-1]-t+1;
+                if(newtime+t<time[i][j-1]){
+                    time[i][j-1]=newtime+t;
+                    pq.push({time[i][j-1],{i,j-1}});
+                }
+            }
+        }
+        return time[n-1][m-1];
+    }
+};
