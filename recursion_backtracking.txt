@@ -46,3 +46,36 @@ public:
         return res;
     }
 };
+
+
+// leetcode 797 All paths from source to target
+
+void fn(int i,vector<vector<int>>& graph,vector<int>& temp,int n,vector<vector<int>>& res){
+    if(i==n-1){
+        temp.push_back(i);
+        res.push_back(temp);
+        temp.pop_back();
+        return;
+    }
+        
+    temp.push_back(i);
+    for(auto it:graph[i]){
+        fn(it,graph,temp,n,res);  
+    }
+    temp.pop_back();
+}
+
+class Solution {
+public:
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<vector<int>> res;
+        
+        for(auto it:graph[0]){
+            vector<int> temp;
+            temp.push_back(0);
+            fn(it,graph,temp,n,res);
+        }
+        return res;
+    }
+};
