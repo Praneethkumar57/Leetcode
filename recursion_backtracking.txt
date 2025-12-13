@@ -1,0 +1,48 @@
+// leetcode 131 Palindrome partitioning 
+
+bool is_palindrome(const string &s) {
+    int l = 0, r = s.size() - 1;
+    while (l < r) {
+        if (s[l++] != s[r--]) return false;
+    }
+    return true;
+}
+
+void fn(vector<string>& temp,vector<vector<string>>& res, int n,int i,string s){
+    if(i>=n){
+        if(is_palindrome(temp.back()))res.push_back(temp);
+        return;
+    }
+
+    string c(1,s[i]);
+    string st = temp.back()+c;
+    string st2 = temp.back();
+    //cout<<st<<" "<<st2<<" "<<c<<endl;
+    temp.pop_back();
+
+    temp.push_back(st);
+    fn(temp,res,n,i+1,s);
+    temp.pop_back();
+
+    temp.push_back(st2);
+    if(is_palindrome(st2)){
+        temp.push_back(c);
+        fn(temp,res,n,i+1,s);
+        temp.pop_back();
+    }
+}
+
+class Solution {
+public:
+    vector<vector<string>> partition(string s) {
+        int n= s.size();
+        vector<vector<string>> res;
+        vector<string> temp;
+        string st = "";
+        st += s[0];
+        temp.push_back(st);
+        int k = temp.size();
+        fn(temp,res,n,1,s);
+        return res;
+    }
+};
