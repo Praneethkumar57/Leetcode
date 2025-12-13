@@ -115,3 +115,38 @@ public:
         return res;
     }
 };
+
+
+// leetcode 988 Smallest string starting from leaf
+
+void fn(TreeNode* root, vector<string>& res, string st){
+    if(root->left==NULL && root->right==NULL){
+        string s = st;
+        reverse(s.begin(),s.end());
+        res.push_back(s);
+        return;
+    }
+
+    if(root->left != NULL){
+        st += root->left->val+'a';
+        fn(root->left,res,st);
+        st.pop_back();
+    }
+
+    if(root->right != NULL){
+        st += root->right->val+'a';
+        fn(root->right,res,st);
+        st.pop_back();
+    }
+}
+
+class Solution {
+public:
+    string smallestFromLeaf(TreeNode* root) {
+        vector<string> res;
+        string st(1,root->val+'a');
+        fn(root, res, st);
+        sort(res.begin(),res.end());
+        return res[0];
+    }
+};
