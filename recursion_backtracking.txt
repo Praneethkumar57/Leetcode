@@ -79,3 +79,39 @@ public:
         return res;
     }
 };
+
+
+// leetcode 784 lettercase permutation
+
+void fn(int i,string s, vector<string>& res,int n,string st){
+    if(i>=n){
+        res.push_back(st);
+        return;
+    }
+
+    char t = s[i];
+    if((t>='a' && t<='z') || (t>='A' && t<='Z')){
+        char c1 = tolower(t);
+        char c2 = toupper(t);
+
+        string temp1 = st+c1;
+        string temp2 = st+c2;
+        fn(i+1,s,res,n,temp1);
+        fn(i+1,s,res,n,temp2);
+    }
+    else{
+        string temp = st+t;
+        fn(i+1,s,res,n,temp);
+    }
+}
+
+class Solution {
+public:
+    vector<string> letterCasePermutation(string s) {
+        vector<string> res;
+        int n=s.size();
+        string st="";
+        fn(0,s,res,n,st);
+        return res;
+    }
+};
