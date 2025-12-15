@@ -242,3 +242,44 @@ public:
         return maxi;
     }
 };
+
+
+// leetcode 1255 Maximum score words formed by letters
+
+int maxi;
+
+void fn(vector<string>& words,vector<int>& freq,vector<int>& score,int val,int ind,int n){
+    for(int i=ind;i<n;i++){
+        vector<int> freq1 = freq;
+        int val1 = val;
+        int flag=1;
+        for(int j=0;j<words[i].size();j++){
+            if(freq1[words[i][j]-'a']>0){
+                val1 += score[words[i][j]-'a'];
+                freq1[words[i][j]-'a']--;
+            }
+            else{
+                flag=0;
+                break;
+            }
+        }
+        if(flag==1){
+            fn(words,freq1,score,val1,i+1,n);
+        }
+    }
+    maxi = max(maxi,val);
+}
+
+class Solution {
+public:
+    int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
+        vector<int> freq(26,0);
+        for(auto it:letters){
+            freq[it-'a']++;
+        }
+        int n=words.size();
+        maxi = 0;
+        fn(words,freq,score,0,0,n);
+        return maxi;
+    }
+};
