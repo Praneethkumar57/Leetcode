@@ -178,3 +178,67 @@ public:
         return(st.size());
     }
 };
+
+
+// leetcode 1219 Path with maximum gold
+
+int maxi;
+
+void fn(vector<vector<int>>& grid,int i,int j,vector<vector<int>>& vis,int n,int m,int val){
+    if((i+1>=n || grid[i+1][j]==0 || vis[i+1][j]) && (i-1<0 || grid[i-1][j]==0 || vis[i-1][j]) && (j+1>=m || grid[i][j+1]==0 || vis[i][j+1]) && (j-1<0 || grid[i][j-1]==0 || vis[i][j-1])){
+        maxi = max(maxi,val);
+        return;
+    }
+
+    if(i+1<n && !vis[i+1][j] && grid[i+1][j]!=0){
+        vis[i+1][j]=1;
+        val += grid[i+1][j];
+        fn(grid,i+1,j,vis,n,m,val);
+        val = val-grid[i+1][j];
+        vis[i+1][j]=0;
+    }
+
+    if(i-1>=0 && !vis[i-1][j] && grid[i-1][j]!=0){
+        vis[i-1][j]=1;
+        val += grid[i-1][j];
+        fn(grid,i-1,j,vis,n,m,val);
+        val -= grid[i-1][j];
+        vis[i-1][j]=0;
+    }
+
+    if(j+1<m && !vis[i][j+1] && grid[i][j+1]!=0){
+        vis[i][j+1]=1;
+        val += grid[i][j+1];
+        fn(grid,i,j+1,vis,n,m,val);
+        val -= grid[i][j+1];
+        vis[i][j+1]=0;
+    }
+    
+    if(j-1>=0 && !vis[i][j-1] && grid[i][j-1]!=0){
+        vis[i][j-1]=1;
+        val += grid[i][j-1];
+        fn(grid,i,j-1,vis,n,m,val);
+        val -= grid[i][j-1];
+        vis[i][j-1]=0;
+    }
+}
+
+class Solution {
+public:
+    int getMaximumGold(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        maxi=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]!=0){
+                    int val = grid[i][j];
+                    vector<vector<int>> vis(n,vector<int>(m,0));
+                    vis[i][j]=1;
+                    fn(grid,i,j,vis,n,m,val);
+                }
+            }
+        }
+        return maxi;
+    }
+};
