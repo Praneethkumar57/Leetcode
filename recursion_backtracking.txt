@@ -346,3 +346,57 @@ public:
         return ans;
     }
 };
+
+
+
+// leetcode 2048 next greater 
+
+void fn(int a,int b,int c,vector<int>& poss){
+    string perm(a,(a+'0'));
+    perm += string(b,b+'0');
+    perm += string(c,c+'0');
+    do{
+        int val = stoi(perm);
+        poss.push_back(val);
+    }while(next_permutation(perm.begin(),perm.end()));
+}
+
+class Solution {
+public:
+    int nextBeautifulNumber(int n) {
+        string s=to_string(n);
+        int b=s.size();
+        int a=0;
+        vector<int> poss;
+
+        string c(b,(b+'0'));
+        int d=stoi(c);
+        int val=b;
+        if(n>=d){
+            b=b+1;
+            val=b;
+        }
+        while(a<val){
+            fn(a,val,0,poss);
+            a++;
+            val--;
+        }
+        if(b>=6){
+            if(b==6){
+                fn(1,2,3,poss);
+            }
+            else if(b==7) fn(1,2,4,poss);
+            else if(b==8) fn(1,2,5,poss);
+            else if(b==9){
+                fn(1,2,6,poss);
+                fn(2,3,4,poss);
+            }
+            
+        }
+        sort(poss.begin(),poss.end());
+        for(auto it:poss){
+            if(it>n)return it;
+        }
+        return 0;
+    }
+};
