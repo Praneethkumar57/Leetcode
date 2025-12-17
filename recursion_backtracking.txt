@@ -400,3 +400,28 @@ public:
         return 0;
     }
 };
+
+
+// leetcode 2178
+
+class Solution {
+public:
+    vector<long long> maximumEvenSplit(long long finalSum) {
+        if(finalSum%2==1)return {};
+        long long sum=0;
+        long long val =0;
+        vector<long long> res;
+        while(sum<finalSum){
+            val = val+2;
+            res.push_back(val);
+            sum += val;
+        }
+        if(sum==finalSum)return res;
+        long long diff=sum-finalSum;
+        auto ind = find(res.begin(),res.end(),diff);
+        if(ind!=res.end()){
+            res.erase(ind);
+        }
+        return res;
+    }
+};
