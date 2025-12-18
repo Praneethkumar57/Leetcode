@@ -425,3 +425,40 @@ public:
         return res;
     }
 };
+
+
+// leetcode 2305 
+
+int maxi;
+
+int calc2(vector<int>& y){
+    int maxi=0;
+    for(auto it:y){
+        maxi = max(maxi,it);
+    }
+    return maxi;
+}
+
+void fn(vector<int>& cookies,int k,int n,int ind,vector<int>& y){
+    if(ind>=n){
+        int score = calc2(y);
+        maxi = min(maxi,score);
+        return;
+    }
+    for(int i=0;i<k;i++){
+        y[i] += cookies[ind];
+        fn(cookies,k,n,ind+1,y);
+        y[i] -= cookies[ind];
+    }
+}
+
+class Solution {
+public:
+    int distributeCookies(vector<int>& cookies, int k) {
+        int n=cookies.size();
+        vector<int> y(k,0);
+        maxi =INT_MAX;
+        fn(cookies,k,n,0,y);
+        return maxi;
+    }
+};
