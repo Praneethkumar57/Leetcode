@@ -74,3 +74,29 @@ public:
         return ans;
     }
 };
+
+
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        map<int,int> mpp;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            mpp[i]=nums[i];
+        }
+        int val = pow(2,n);
+        vector<vector<int>> res;
+        for(int i=0;i<val;i++){
+            vector<int> t;
+            int val = i;
+            int ind=0;
+            while(val>0){
+                if(val&1)t.push_back(mpp[ind]);
+                ind++;
+                val>>=1;
+            }
+            res.push_back(t);
+        }
+        return res;
+    }
+};
