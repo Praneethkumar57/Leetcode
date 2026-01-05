@@ -1,0 +1,42 @@
+// leetcode 907
+
+class Solution {
+public:
+    int sumSubarrayMins(vector<int>& arr) {
+        int n=arr.size();
+        int mod = (1e9+7);
+        vector<int> pse(n);
+        vector<int> nse(n);
+        stack<pair<int,int>> st;
+        for(int i=0;i<n;i++){
+            while(!st.empty()){
+                if(arr[i]<st.top().first){
+                    nse[st.top().second]=i;
+                    st.pop();
+                }
+                else{
+                    break;
+                }
+            }
+
+            if(st.empty()){
+                pse[i]=-1;
+            }
+            else{
+                pse[i]=st.top().second;
+            }
+            st.push({arr[i],i});
+        }
+        while(!st.empty()){
+            nse[st.top().second]=n;
+            st.pop();
+        }
+        long long ans=0;
+        for(int i=0;i<n;i++){
+            long long r= (nse[i]-i);
+            long long l= (i-pse[i]);
+            ans = (ans+(l*r % mod)*arr[i] %mod)%mod;
+        }
+        return (int)ans;
+    }
+};
