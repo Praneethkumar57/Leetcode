@@ -40,3 +40,82 @@ public:
         return (int)ans;
     }
 };
+
+
+// nge,pge, nse,pse
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve(){
+  int n;
+  cin>>n;
+  vector<int> a(n);
+  for(int i=0;i<n;i++)cin>>a[i];
+  
+  // finding nge and pge
+  
+  vector<int> nge(n,n);
+  vector<int> pge(n,-1);
+  stack<pair<int,int>> st;
+  for(int i=0;i<n;i++){
+    while(!st.empty() && a[i]>st.top().first){
+      nge[st.top().second]=i;
+      st.pop();
+    }
+    
+    if(!st.empty()){
+      pge[i]=st.top().second;
+    }
+    st.push({a[i],i});
+  }
+  
+  for(auto it:nge){
+    cout<<it<<" ";
+  }
+  cout<<endl;
+  for(auto it:pge){
+    cout<<it<<" ";
+  }
+  cout<<endl;
+  
+  
+  // finding nse and pse
+  
+  vector<int> nse(n,n);
+  vector<int> pse(n,-1);
+  stack<pair<int,int>> st2;
+  
+  for(int i=0;i<n;i++){
+    while(!st2.empty() && a[i]<st2.top().first){
+      nse[st2.top().second] = i;
+      st2.pop();
+    }
+    
+    if(!st2.empty()){
+      pse[i] = st2.top().second;
+    }
+    st2.push({a[i],i});
+  }
+  
+  for(auto it:nse){
+    cout<<it<<" ";
+  }
+  cout<<endl;
+  for(auto it:pse){
+    cout<<it<<" ";
+  }
+  return;
+}
+
+int32_t main() 
+{
+    int t=1;
+    //cin>>t;
+    while(t--){
+      solve();
+      //cout<<s<<endl;
+    }
+    return 0;
+}
