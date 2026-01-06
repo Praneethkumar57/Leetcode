@@ -203,3 +203,49 @@ public:
         return ans;
     }
 };
+
+
+// leetcode 85
+
+
+class Solution {
+public:
+    int maximalRectangle(vector<vector<char>>& mat) {
+        int n=mat.size();
+        int m=mat[0].size();
+        vector<vector<int>> a(n,vector<int>(m));
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                int cnt=0;
+                int k=i;
+                while(k>=0 && mat[k][j]=='1'){
+                    cnt++;
+                    k--;
+                }
+                a[i][j]=cnt;
+            }
+        }
+        int ans=0;
+        for(int i=0;i<n;i++){
+            vector<int> pse(m,-1);
+            vector<int> nse(m,m);
+            stack<pair<int,int>> st;
+            for(int j=0;j<m;j++){
+                while(!st.empty() && a[i][j]<=st.top().first){
+                    nse[st.top().second]=j;
+                    st.pop();
+                }
+                if(!st.empty()){
+                    pse[j]=st.top().second;
+                }
+                st.push({a[i][j],j});
+            }
+            for(int k=0;k<m;k++){
+                int l = (k-(pse[k]+1));
+                int r=nse[k]-k;
+                ans = max(ans, (l+r)*a[i][k]); 
+            }
+        }
+        return ans;
+    }
+};
