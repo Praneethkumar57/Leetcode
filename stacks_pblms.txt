@@ -119,3 +119,57 @@ int32_t main()
     }
     return 0;
 }
+
+
+// leetcode 2104
+
+class Solution {
+public:
+    long long subArrayRanges(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> nse(n,n);
+        vector<int> pse(n,-1);
+        stack<pair<int,int>> st;
+        for(int i=0;i<n;i++){
+            while(!st.empty() && nums[i]<=st.top().first){
+                nse[st.top().second] = i;
+                st.pop();
+            }
+            if(!st.empty()){
+                pse[i] = st.top().second;
+            }
+            st.push({nums[i],i});
+        }
+        while(!st.empty()){
+            st.pop();
+        }
+
+        vector<int> nge(n,n);
+        vector<int> pge(n,-1);
+
+        for(int i=0;i<n;i++){
+            while(!st.empty() && nums[i]>=st.top().first){
+                nge[st.top().second] = i;
+                st.pop();
+            }
+            if(!st.empty()){
+                pge[i]=st.top().second;
+            }
+            st.push({nums[i],i});
+        }
+
+        long long ans = 0;
+        long long minsum = 0;
+        long long maxsum = 0;
+        for(int i=0;i<n;i++){
+            long long lmin = i-pse[i];
+            long long rmin = nse[i]-i;
+            minsum += (lmin*rmin*nums[i]);
+            long long lmax = i-pge[i];
+            long long rmax = nge[i]-i;
+            maxsum += (lmax*rmax*nums[i]);
+        }
+        ans = maxsum - minsum;
+        return ans;
+    }
+};
