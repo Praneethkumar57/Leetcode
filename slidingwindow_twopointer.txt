@@ -1,0 +1,35 @@
+Leetcode 3: Longest substring with repeated chars:
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n=s.size();
+        if(n<=1)return n;
+        int i=0;
+        int maxi=INT_MIN;
+        while(i<n){
+            map<char,int> mpp;
+            int j=i;
+            int cnt=0;
+            while(j<n){
+                //cout<<i<<" "<<j<<" ";
+                if(mpp.find(s[j])!=mpp.end()){
+                    maxi = max(maxi,cnt);
+                    i=mpp[s[j]]+1;
+                    break;
+                }
+                else{
+                    mpp[s[j]]=j;
+                    cnt++;
+                }
+                j++;
+            }
+            if(j==n){
+                maxi = max(maxi,cnt);
+                break;
+            }
+        }
+        //maxi = max(maxi,cnt);
+        return maxi;
+    }
+};
