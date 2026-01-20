@@ -258,3 +258,58 @@ public:
         return cnt1-cnt2;
     }
 };
+
+
+// leetcode 76: Minimum window size(hard pblm)
+
+bool check(vector<int>& seqn,vector<int>& freq){
+    for(int i=0;i<58;i++){
+        if(freq[i]>seqn[i])return false;
+    }
+    return true;
+}
+
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int n=s.size();
+        vector<int> freq(58,0);
+        for(auto it:t){
+            freq[it-'A']++;
+        }
+        int l=0,r=0;
+        int st=0,end=n;
+        vector<int> seqn(58,0);
+        while(r<n){
+            seqn[s[r]-'A']++;
+            if(check(seqn,freq)){
+                if(end-st+1>r-l+1){
+                    st=l;
+                    end=r;
+                }
+                while(l<=r){
+                    seqn[s[l]-'A']--;
+                    l++;
+                    if(check(seqn,freq)){
+                        if(end-st+1>r-l+1){
+                            st=l;
+                            end=r;
+                        }
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+            r++;
+        }
+        if(check(seqn,freq)){
+            if(end-st+1>r-l+1){
+                st=l;
+                end=r;
+            }
+        }
+        if(end==n)return "";
+        return(s.substr(st,end-st+1));
+    }
+};
