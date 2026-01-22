@@ -352,3 +352,51 @@ public:
     }
 };
 
+
+// minimum window substring 
+
+bool check(vector<int>& seqn,vector<int>& freq){
+    for(int i=0;i<58;i++){
+        if(seqn[i]<freq[i])return false;
+    }
+    return true;
+}
+
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int n=s.size();
+        vector<int> freq(58,0);
+        for(auto it:t){
+            freq[it-'A']++;
+        }
+        int l=0,r=0,st=0,end=n;
+        vector<int> seqn(58,0);
+        while(r<n){
+            seqn[s[r]-'A']++;
+            if(check(seqn,freq)){
+                if(r-l+1<end-st+1){
+                    st=l;
+                    end=r;
+                }
+                while(l<=r){
+                    seqn[s[l]-'A']--;
+                    l++;
+                    if(check(seqn,freq)){
+                        if(r-l+1<end-st+1){
+                            st=l;
+                            end=r;
+                        }
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+            r++;
+        }
+        if(end==n)return "";
+        string s1 = s.substr(st,end-st+1);
+        return s1;
+    }
+};
