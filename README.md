@@ -7,6 +7,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0120-triangle](https://github.com/Praneethkumar57/Leetcode/tree/master/0120-triangle) |
+| [1288-remove-covered-intervals](https://github.com/Praneethkumar57/Leetcode/tree/main/1288-remove-covered-intervals/) | Medium |
 | [2529-range-product-queries-of-powers](https://github.com/Praneethkumar57/Leetcode/tree/master/2529-range-product-queries-of-powers) |
 ## Dynamic Programming
 | Problem Name | Difficulty |
@@ -38,4 +39,8 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0241-different-ways-to-add-parentheses](https://github.com/Praneethkumar57/Leetcode/tree/main/0241-different-ways-to-add-parentheses/) | Medium |
+## Sorting
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [1288-remove-covered-intervals](https://github.com/Praneethkumar57/Leetcode/tree/main/1288-remove-covered-intervals/) | Medium |
 <!---LeetCode Topics End-->
