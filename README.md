@@ -9,6 +9,7 @@ All my leetcode solutions will be store here
 | [0120-triangle](https://github.com/Praneethkumar57/Leetcode/tree/master/0120-triangle) |
 | [1288-remove-covered-intervals](https://github.com/Praneethkumar57/Leetcode/tree/main/1288-remove-covered-intervals/) | Medium |
 | [2529-range-product-queries-of-powers](https://github.com/Praneethkumar57/Leetcode/tree/master/2529-range-product-queries-of-powers) |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -22,6 +23,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [2529-range-product-queries-of-powers](https://github.com/Praneethkumar57/Leetcode/tree/master/2529-range-product-queries-of-powers) |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
 ## String
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -31,6 +33,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0241-different-ways-to-add-parentheses](https://github.com/Praneethkumar57/Leetcode/tree/main/0241-different-ways-to-add-parentheses/) | Medium |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
 ## Recursion
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -43,4 +46,24 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1288-remove-covered-intervals](https://github.com/Praneethkumar57/Leetcode/tree/main/1288-remove-covered-intervals/) | Medium |
+## Hash Table
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
+## Binary Search
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
+## Combinatorics
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
+## Counting
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
+## Number Theory
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
 <!---LeetCode Topics End-->
