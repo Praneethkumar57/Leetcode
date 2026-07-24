@@ -29,6 +29,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0241-different-ways-to-add-parentheses](https://github.com/Praneethkumar57/Leetcode/tree/main/0241-different-ways-to-add-parentheses/) | Medium |
+| [0984-string-without-aaa-or-bbb](https://github.com/Praneethkumar57/Leetcode/tree/main/0984-string-without-aaa-or-bbb/) | Medium |
 | [2346-largest-3-same-digit-number-in-string](https://github.com/Praneethkumar57/Leetcode/tree/master/2346-largest-3-same-digit-number-in-string) |
 ## Math
 | Problem Name | Difficulty |
@@ -81,4 +82,8 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0979-distribute-coins-in-binary-tree](https://github.com/Praneethkumar57/Leetcode/tree/main/0979-distribute-coins-in-binary-tree/) | Medium |
+## Greedy
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0984-string-without-aaa-or-bbb](https://github.com/Praneethkumar57/Leetcode/tree/main/0984-string-without-aaa-or-bbb/) | Medium |
 <!---LeetCode Topics End-->
