@@ -69,4 +69,16 @@ All my leetcode solutions will be store here
 | ------- | ------- |
 | [1979-find-greatest-common-divisor-of-array](https://github.com/Praneethkumar57/Leetcode/tree/main/1979-find-greatest-common-divisor-of-array/) | Easy |
 | [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
+## Tree
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0979-distribute-coins-in-binary-tree](https://github.com/Praneethkumar57/Leetcode/tree/main/0979-distribute-coins-in-binary-tree/) | Medium |
+## Depth-First Search
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0979-distribute-coins-in-binary-tree](https://github.com/Praneethkumar57/Leetcode/tree/main/0979-distribute-coins-in-binary-tree/) | Medium |
+## Binary Tree
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0979-distribute-coins-in-binary-tree](https://github.com/Praneethkumar57/Leetcode/tree/main/0979-distribute-coins-in-binary-tree/) | Medium |
 <!---LeetCode Topics End-->
