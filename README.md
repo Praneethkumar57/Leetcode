@@ -7,6 +7,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0120-triangle](https://github.com/Praneethkumar57/Leetcode/tree/master/0120-triangle) |
+| [0983-minimum-cost-for-tickets](https://github.com/Praneethkumar57/Leetcode/tree/main/0983-minimum-cost-for-tickets/) | Medium |
 | [1288-remove-covered-intervals](https://github.com/Praneethkumar57/Leetcode/tree/main/1288-remove-covered-intervals/) | Medium |
 | [1979-find-greatest-common-divisor-of-array](https://github.com/Praneethkumar57/Leetcode/tree/main/1979-find-greatest-common-divisor-of-array/) | Easy |
 | [2529-range-product-queries-of-powers](https://github.com/Praneethkumar57/Leetcode/tree/master/2529-range-product-queries-of-powers) |
@@ -16,6 +17,7 @@ All my leetcode solutions will be store here
 | ------- | ------- |
 | [0120-triangle](https://github.com/Praneethkumar57/Leetcode/tree/master/0120-triangle) |
 | [0241-different-ways-to-add-parentheses](https://github.com/Praneethkumar57/Leetcode/tree/main/0241-different-ways-to-add-parentheses/) | Medium |
+| [0983-minimum-cost-for-tickets](https://github.com/Praneethkumar57/Leetcode/tree/main/0983-minimum-cost-for-tickets/) | Medium |
 ## Bit Manipulation
 | Problem Name | Difficulty |
 | ------- | ------- |
