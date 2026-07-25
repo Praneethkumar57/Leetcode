@@ -29,6 +29,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0241-different-ways-to-add-parentheses](https://github.com/Praneethkumar57/Leetcode/tree/main/0241-different-ways-to-add-parentheses/) | Medium |
+| [0981-time-based-key-value-store](https://github.com/Praneethkumar57/Leetcode/tree/main/0981-time-based-key-value-store/) | Medium |
 | [0984-string-without-aaa-or-bbb](https://github.com/Praneethkumar57/Leetcode/tree/main/0984-string-without-aaa-or-bbb/) | Medium |
 | [2346-largest-3-same-digit-number-in-string](https://github.com/Praneethkumar57/Leetcode/tree/master/2346-largest-3-same-digit-number-in-string) |
 ## Math
@@ -54,10 +55,12 @@ All my leetcode solutions will be store here
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0981-time-based-key-value-store](https://github.com/Praneethkumar57/Leetcode/tree/main/0981-time-based-key-value-store/) | Medium |
 | [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
 ## Binary Search
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0981-time-based-key-value-store](https://github.com/Praneethkumar57/Leetcode/tree/main/0981-time-based-key-value-store/) | Medium |
 | [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
 ## Combinatorics
 | Problem Name | Difficulty |
@@ -88,4 +91,8 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0984-string-without-aaa-or-bbb](https://github.com/Praneethkumar57/Leetcode/tree/main/0984-string-without-aaa-or-bbb/) | Medium |
+## Design
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0981-time-based-key-value-store](https://github.com/Praneethkumar57/Leetcode/tree/main/0981-time-based-key-value-store/) | Medium |
 <!---LeetCode Topics End-->
