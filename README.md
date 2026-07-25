@@ -56,6 +56,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0981-time-based-key-value-store](https://github.com/Praneethkumar57/Leetcode/tree/main/0981-time-based-key-value-store/) | Medium |
+| [2034-stock-price-fluctuation](https://github.com/Praneethkumar57/Leetcode/tree/main/2034-stock-price-fluctuation/) | Medium |
 | [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
 ## Binary Search
 | Problem Name | Difficulty |
@@ -95,4 +96,17 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0981-time-based-key-value-store](https://github.com/Praneethkumar57/Leetcode/tree/main/0981-time-based-key-value-store/) | Medium |
+| [2034-stock-price-fluctuation](https://github.com/Praneethkumar57/Leetcode/tree/main/2034-stock-price-fluctuation/) | Medium |
+## Heap (Priority Queue)
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2034-stock-price-fluctuation](https://github.com/Praneethkumar57/Leetcode/tree/main/2034-stock-price-fluctuation/) | Medium |
+## Data Stream
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2034-stock-price-fluctuation](https://github.com/Praneethkumar57/Leetcode/tree/main/2034-stock-price-fluctuation/) | Medium |
+## Ordered Set
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2034-stock-price-fluctuation](https://github.com/Praneethkumar57/Leetcode/tree/main/2034-stock-price-fluctuation/) | Medium |
 <!---LeetCode Topics End-->
