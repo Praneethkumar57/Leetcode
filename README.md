@@ -37,6 +37,7 @@ All my leetcode solutions will be store here
 | [0241-different-ways-to-add-parentheses](https://github.com/Praneethkumar57/Leetcode/tree/main/0241-different-ways-to-add-parentheses/) | Medium |
 | [1979-find-greatest-common-divisor-of-array](https://github.com/Praneethkumar57/Leetcode/tree/main/1979-find-greatest-common-divisor-of-array/) | Easy |
 | [3312-sorted-gcd-pair-queries](https://github.com/Praneethkumar57/Leetcode/tree/main/3312-sorted-gcd-pair-queries/) | Hard |
+| [3536-maximum-product-of-two-digits](https://github.com/Praneethkumar57/Leetcode/tree/main/3536-maximum-product-of-two-digits/) | Easy |
 ## Recursion
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -49,6 +50,7 @@ All my leetcode solutions will be store here
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1288-remove-covered-intervals](https://github.com/Praneethkumar57/Leetcode/tree/main/1288-remove-covered-intervals/) | Medium |
+| [3536-maximum-product-of-two-digits](https://github.com/Praneethkumar57/Leetcode/tree/main/3536-maximum-product-of-two-digits/) | Easy |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
